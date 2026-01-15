@@ -83,15 +83,18 @@ void start_kernel() {
 
 void execute_command(char *input) {
     if (compare_string(input, "EXIT") == 0) {
-        print_string("Stopping the CPU. Bye!\n");
+        print_string("Halting CPU. Bye :)\n");
         asm volatile("hlt");
     }
+    if (compare_string(input, "TOP") == 0) {
+        print_string("Free: ");
+        print_dynamic_mem();
+    }
     else if (compare_string(input, "") == 0) {
-        print_string("\n> ");
     }
     else {
         print_string("Unknown command: ");
         print_string(input);
-        print_string("\n> ");
     }
+    print_string("\n>");
 }
